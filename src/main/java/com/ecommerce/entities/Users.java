@@ -10,17 +10,19 @@ public class Users {
     private Integer id;
     private String userName;
     private String password;
-    private String email;
     private boolean isAdmin;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn( name="profile" )
+    private Profile profile;
 
 
     public Users() {
     }
 
-    public Users(String userName, String password, String email) {
+    public Users(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        this.email = email;
+
     }
 
     public Integer getId() {
@@ -47,19 +49,19 @@ public class Users {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }
